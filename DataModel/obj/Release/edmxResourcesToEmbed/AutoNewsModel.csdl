@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutoNewsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AutoNewsEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Crawlers" EntityType="AutoNewsModel.Crawler" />
+    <EntitySet Name="News" EntityType="AutoNewsModel.News" />
+    <EntitySet Name="Prices" EntityType="AutoNewsModel.Price" />
+    <AssociationSet Name="FK_Prices_News" Association="AutoNewsModel.FK_Prices_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="Prices" EntitySet="Prices" />
+    </AssociationSet>
+    <EntitySet Name="Markets" EntityType="AutoNewsModel.Market" />
+    <EntitySet Name="MarketTypes" EntityType="AutoNewsModel.MarketType" />
+    <AssociationSet Name="FK_Crawler_Market" Association="AutoNewsModel.FK_Crawler_Market">
+      <End Role="Market" EntitySet="Markets" />
+      <End Role="Crawler" EntitySet="Crawlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Market_MarketType" Association="AutoNewsModel.FK_Market_MarketType">
+      <End Role="MarketType" EntitySet="MarketTypes" />
+      <End Role="Market" EntitySet="Markets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Market" Association="AutoNewsModel.FK_News_Market">
+      <End Role="Market" EntitySet="Markets" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <EntitySet Name="Holidays" EntityType="AutoNewsModel.Holiday" />
+    <EntitySet Name="Logs" EntityType="AutoNewsModel.Log" />
+    <AssociationSet Name="FK_Log_Market" Association="AutoNewsModel.FK_Log_Market">
+      <End Role="Market" EntitySet="Markets" />
+      <End Role="Log" EntitySet="Logs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Crawler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="StartTime" Type="Time" Precision="7" />
+    <Property Type="String" Name="MarketName" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="MarketId" />
+    <NavigationProperty Name="Market" Relationship="AutoNewsModel.FK_Crawler_Market" FromRole="Crawler" ToRole="Market" />
+    <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="MarketId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Prices" Relationship="AutoNewsModel.FK_Prices_News" FromRole="News" ToRole="Prices" />
+    <NavigationProperty Name="Market" Relationship="AutoNewsModel.FK_News_Market" FromRole="News" ToRole="Market" />
+    <Property Type="DateTime" Name="Updated" Precision="3" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsId" Type="Int32" />
+    <Property Name="LPrice" Type="Decimal" Precision="20" Scale="8" />
+    <Property Name="HPirce" Type="Decimal" Precision="20" Scale="8" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Delta" Type="Decimal" Precision="20" Scale="8" />
+    <Property Name="Spread" Type="Decimal" Precision="20" Scale="8" />
+    <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PriceUnit" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="News" Relationship="AutoNewsModel.FK_Prices_News" FromRole="Prices" ToRole="News" />
+    <Property Type="String" Name="Token" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="MarketCrmId" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Prices_News">
+    <End Role="News" Type="AutoNewsModel.News" Multiplicity="0..1" />
+    <End Role="Prices" Type="AutoNewsModel.Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prices">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Market">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="MarketTypeId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Crawlers" Relationship="AutoNewsModel.FK_Crawler_Market" FromRole="Market" ToRole="Crawler" />
+    <NavigationProperty Name="MarketType" Relationship="AutoNewsModel.FK_Market_MarketType" FromRole="Market" ToRole="MarketType" />
+    <NavigationProperty Name="News" Relationship="AutoNewsModel.FK_News_Market" FromRole="Market" ToRole="News" />
+    <Property Type="Int32" Name="MarketCrmId" Nullable="false" />
+    <Property Type="Time" Name="StartTime" Precision="7" />
+    <Property Type="Boolean" Name="RunOnHoliday" Nullable="false" />
+    <NavigationProperty Name="Logs" Relationship="AutoNewsModel.FK_Log_Market" FromRole="Market" ToRole="Log" />
+    <Property Type="Time" Name="EndTime" Precision="7" />
+    <Property Type="Boolean" Name="Auto" Nullable="false" />
+    <Property Type="DateTime" Name="Updated" Precision="3" />
+  </EntityType>
+  <EntityType Name="MarketType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Markets" Relationship="AutoNewsModel.FK_Market_MarketType" FromRole="MarketType" ToRole="Market" />
+  </EntityType>
+  <Association Name="FK_Crawler_Market">
+    <End Type="AutoNewsModel.Market" Role="Market" Multiplicity="0..1" />
+    <End Type="AutoNewsModel.Crawler" Role="Crawler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Market">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Crawler">
+        <PropertyRef Name="MarketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Market_MarketType">
+    <End Type="AutoNewsModel.MarketType" Role="MarketType" Multiplicity="1" />
+    <End Type="AutoNewsModel.Market" Role="Market" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarketType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Market">
+        <PropertyRef Name="MarketTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Market">
+    <End Type="AutoNewsModel.Market" Role="Market" Multiplicity="1" />
+    <End Type="AutoNewsModel.News" Role="News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Market">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="MarketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="Holidate" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Message" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="LogTime" Precision="3" />
+    <Property Type="Int32" Name="MarketId" />
+    <NavigationProperty Name="Market" Relationship="AutoNewsModel.FK_Log_Market" FromRole="Log" ToRole="Market" />
+    <Property Type="Boolean" Name="Published" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Log_Market">
+    <End Type="AutoNewsModel.Market" Role="Market" Multiplicity="0..1" />
+    <End Type="AutoNewsModel.Log" Role="Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Market">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="MarketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

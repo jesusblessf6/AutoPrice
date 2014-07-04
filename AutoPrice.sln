@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPrice", "AutoPrice\AutoPrice.csproj", "{37B95021-94B9-442E-BC58-D33107054539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{2330D00B-E2DC-4410-81B6-8AB4E15BC1A9}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AutoPrice\\AutoPrice.csproj
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = AutoPrice\\
+		SccProjectUniqueName2 = DataModel\\DataModel.csproj
+		SccLocalPath2 = .
+		SccProjectFilePathRelativizedFromConnection2 = DataModel\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37B95021-94B9-442E-BC58-D33107054539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B95021-94B9-442E-BC58-D33107054539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B95021-94B9-442E-BC58-D33107054539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B95021-94B9-442E-BC58-D33107054539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2330D00B-E2DC-4410-81B6-8AB4E15BC1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2330D00B-E2DC-4410-81B6-8AB4E15BC1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2330D00B-E2DC-4410-81B6-8AB4E15BC1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2330D00B-E2DC-4410-81B6-8AB4E15BC1A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

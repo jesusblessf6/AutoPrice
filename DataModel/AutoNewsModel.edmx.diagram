@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c4a12cf5e04b44a8a0dd843bc0e166e6" Name="关系图1">
+        <EntityTypeShape EntityType="AutoNewsModel.Crawler" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoNewsModel.News" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoNewsModel.Price" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="AutoNewsModel.FK_Prices_News" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AutoNewsModel.Market" Width="1.5" PointX="5.625" PointY="0.5" />
+        <EntityTypeShape EntityType="AutoNewsModel.MarketType" Width="1.5" PointX="4.75" PointY="4.5" />
+        <AssociationConnector Association="AutoNewsModel.FK_Crawler_Market" />
+        <AssociationConnector Association="AutoNewsModel.FK_Market_MarketType" />
+        <AssociationConnector Association="AutoNewsModel.FK_News_Market" />
+        <EntityTypeShape EntityType="AutoNewsModel.Holiday" Width="1.5" PointX="5.125" PointY="7" />
+        <EntityTypeShape EntityType="AutoNewsModel.Log" Width="1.5" PointX="7.25" PointY="4.5" />
+        <AssociationConnector Association="AutoNewsModel.FK_Log_Market" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

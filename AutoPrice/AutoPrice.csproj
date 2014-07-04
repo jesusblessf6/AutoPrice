@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37B95021-94B9-442E-BC58-D33107054539}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutoPrice</RootNamespace>
+    <AssemblyName>AutoPrice</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.40.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.40.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\TimeSpan2String.cs" />
+    <Compile Include="Crawlers\Base\CrawlerFactory.cs" />
+    <Compile Include="Crawlers\Base\CrawlerManager.cs" />
+    <Compile Include="Crawlers\Base\ICrawler.cs" />
+    <Compile Include="Crawlers\BurdenMarket\BurdenMarketBase\FBBase.cs" />
+    <Compile Include="Crawlers\BurdenMarket\BurdenMarketBase\ImportedIronOreBase.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\CFDPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\FCPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\JTPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\LYPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\QDPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\RZPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\TJPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\ZhanJPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\ImportedIronOre\ZhenJPort.cs" />
+    <Compile Include="Crawlers\BurdenMarket\IronOxideMarket\IronOxide.cs" />
+    <Compile Include="Crawlers\BurdenMarket\IronPowderMarket\IronPowder.cs" />
+    <Compile Include="Crawlers\BurdenMarket\PigIronMarket\Casting.cs" />
+    <Compile Include="Crawlers\BurdenMarket\PigIronMarket\Ductile.cs" />
+    <Compile Include="Crawlers\BurdenMarket\PigIronMarket\Steelmaking.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\Chromium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\ChromiumOre.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\FerrochromeNitride.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\HChromium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\LChromium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\MChromium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ChromiumAlloy\MicroChromium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\FerroalloyCoke\Coke.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\CarbonateManganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\HManganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\LManganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\Manganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\ManganeseIngot.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\ManganeseMine.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\ManganeseRichSlag.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\MManganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\OxidationManganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\SilicoManganese.cs" />
+    <Compile Include="Crawlers\Ferroalloy\ManganeseFerroalloy\SilicoManganeseS.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\FourAmmoniumMolybdate.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\Heptamolybdate.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\Molybdenum.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\MolybdenumConcentrate.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\MolybdenumIron.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\MolybdenumPowder.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\MolybdenumProducts.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\MolybdenumScrap.cs" />
+    <Compile Include="Crawlers\Ferroalloy\MolybdenumAlloy\SodiumMolybdate.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\BlackSiliconCarbide.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\ChromeSilicon.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\Ferrosilicon.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\SiliconBarium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\SiliconCalcium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\SiliconMetal.cs" />
+    <Compile Include="Crawlers\Ferroalloy\SiliconAlloy\SiliconMetal421.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TitaniumAlloy\Ferrotitanium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TitaniumAlloy\FineTitaniumTetrachloride.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TitaniumAlloy\SpongeTitanium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TitaniumAlloy\TitaniumDioxide.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TitaniumAlloy\TitaniumOre.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TitaniumAlloy\TitaniumScrap.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TungstenAlloy\Ferrotungsten.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TungstenAlloy\ScrapTungsten.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TungstenAlloy\TungstenConcentrate.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TungstenAlloy\TungstenPowder.cs" />
+    <Compile Include="Crawlers\Ferroalloy\TungstenAlloy\TungstenSteelScrap.cs" />
+    <Compile Include="Crawlers\Ferroalloy\VanadiumAlloy\Ferrovanadium.cs" />
+    <Compile Include="Crawlers\Ferroalloy\VanadiumAlloy\Metavanadate.cs" />
+    <Compile Include="Crawlers\Ferroalloy\VanadiumAlloy\VanadiumAlloy.cs" />
+    <Compile Include="Crawlers\Ferroalloy\VanadiumAlloy\VanadiumPowder.cs" />
+    <Compile Include="Crawlers\Ferroalloy\VanadiumAlloy\VanadiumTablets.cs" />
+    <Compile Include="Crawlers\Ferroalloy\VanadiumAlloy\VNAlloy.cs" />
+    <Compile Include="Crawlers\HSteel\Shanghai\HSteelPro.cs" />
+    <Compile Include="Crawlers\Lasi\SHLasi.cs" />
+    <Compile Include="Crawlers\MetalSpot\Chinalco.cs" />
+    <Compile Include="Crawlers\MetalSpot\SHSpot.cs" />
+    <Compile Include="Crawlers\PreciousMetalsMarket\PreciousMetals.cs" />
+    <Compile Include="Crawlers\PreciousMetalsMarket\SHSmallMetal.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelBase\GetDataBase.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Beijing.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Cangzhou.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Changsha.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Chengdu.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Chongqing.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Fuzhou.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Guangzhou.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Guiyang.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\HaErBin.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Hangzhou.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Jinan.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Kunming.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Lanzhou.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\MaAnShan.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Nanchang.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Shanghai.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Shenyang.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Taiyuan.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Tangshan.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Tianjin.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Wuhan.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Wuxi.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Xiamen.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\XiAn.cs" />
+    <Compile Include="Crawlers\SectionSteel\SectionSteelMarket\Zhengzhou.cs" />
+    <Compile Include="Crawlers\Silicon\SiliconBase\SiliconBase.cs" />
+    <Compile Include="Crawlers\Silicon\Silicon\GZNoOrientation.cs" />
+    <Compile Include="Crawlers\Silicon\Silicon\GZOrientation.cs" />
+    <Compile Include="Crawlers\Silicon\Silicon\SHNoOrientation.cs" />
+    <Compile Include="Crawlers\Silicon\Silicon\SHOrientation.cs" />
+    <Compile Include="Crawlers\Silicon\Silicon\WHOrientation.cs" />
+    <Compile Include="Crawlers\SMMBase\SMMBaseClass.cs" />
+    <Compile Include="Crawlers\StructuralSteel\BaseMethod\CarbonPlateBase.cs" />
+    <Compile Include="Crawlers\StructuralSteel\BaseMethod\CarbonRoundBase.cs" />
+    <Compile Include="Crawlers\StructuralSteel\BaseMethod\CRSteelBase.cs" />
+    <Compile Include="Crawlers\StructuralSteel\BaseMethod\GearSteelBase.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Hangzhou\HZCarbonRound.cs" />
+    <Compile Include="Crawlers\StructuralSteel\JiNan\JNCarbonRound.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Shanghai\CarbonPlate.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Shanghai\CarbonRound.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Shanghai\CRSteel.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Shanghai\GearSteel.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Tangshan\TSCarbonRound.cs" />
+    <Compile Include="Crawlers\StructuralSteel\TianJin\TJCarbonRound.cs" />
+    <Compile Include="Crawlers\StructuralSteel\TianJin\TJCRSteel.cs" />
+    <Compile Include="Crawlers\StructuralSteel\TianJin\TJGearSteel.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Wuxi\WXCarbonPlate.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Wuxi\WXCarbonRound.cs" />
+    <Compile Include="Crawlers\StructuralSteel\Wuxi\WXCRSteel.cs" />
+    <Compile Include="Crawlers\Tudu\Beijing\BJColorCoatedRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Beijing\BJGalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\Guangzhou\GZColorCoatedRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Guangzhou\GZGalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\Guangzhou\GZTinPlateRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Hangzhou\HZColorCoatedRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Hangzhou\HZGalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\Nanjing\NJGalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\Ningbo\NBGalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\Shanghai\ColorCoatedRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Shanghai\GalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\Shanghai\TinPlateRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Tianjin\TJColorCoatedRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Tianjin\TJGalvanizedSteelCoils.cs" />
+    <Compile Include="Crawlers\Tudu\TuduBase\ColorCoatedRollBase.cs" />
+    <Compile Include="Crawlers\Tudu\TuduBase\GalvanizedStellCoilsBase.cs" />
+    <Compile Include="Crawlers\Tudu\TuduBase\TinPlateRollBase.cs" />
+    <Compile Include="Crawlers\Tudu\Wuhan\WHColorCoatedRoll.cs" />
+    <Compile Include="Crawlers\Tudu\Wuhan\WHGalvanizedSteelCoils.cs" />
+    <Compile Include="EntityHelper\LogHelper.cs" />
+    <Compile Include="EntityHelper\MarketHelper.cs" />
+    <Compile Include="EntityHelper\NewsHelper.cs" />
+    <Compile Include="EntityHelper\PriceHelper.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Views\MarketEditor.xaml.cs">
+      <DependentUpon>MarketEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewsEditor.xaml.cs">
+      <DependentUpon>NewsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VMs\BaseVM.cs" />
+    <Compile Include="VMs\MainWindowVM.cs" />
+    <Compile Include="VMs\MarketEditorVM.cs" />
+    <Compile Include="VMs\NewsEditorVM.cs" />
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\MarketEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{2330d00b-e2dc-4410-81b6-8ab4e15bc1a9}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Util\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

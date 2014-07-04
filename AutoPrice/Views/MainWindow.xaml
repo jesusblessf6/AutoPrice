@@ -1,0 +1,61 @@
+﻿<Window x:Class="AutoPrice.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dataModel="clr-namespace:DataModel;assembly=DataModel"
+        Title="MainWindow" Height="640" Width="1100" Loaded="WindowLoaded" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Window.Resources>
+        <RoutedCommand x:Key="ManualRunCrawler"></RoutedCommand>
+        <RoutedCommand x:Key="MarketEdit"></RoutedCommand>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource ManualRunCrawler}" CanExecute="ManualRunCrawlerCanExecute" Executed="ManualRunCrawlerExecuted"></CommandBinding>
+        <CommandBinding Command="{StaticResource MarketEdit}" CanExecute="MarketEditCanExecute" Executed="MarketEditExecuted"></CommandBinding>
+    </Window.CommandBindings>
+
+    <Grid Name="rootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="市场类别" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="Auto" MinHeight="300" Margin="10,36,0,0" VerticalAlignment="Top" Width="133" ItemsSource="{Binding MarketTypes}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="MarketTypeChanged" SelectedValue="{Binding SelectedMarketTypeId}"></ListBox>
+
+        <Label Content="市场明细" HorizontalAlignment="Left" Margin="148,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid Name="marketList" SelectionChanged="MarketChanged" SelectedValuePath="Id" SelectedValue="{Binding SelectedMarketId}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="148,36,0,0" VerticalAlignment="Top" ItemsSource="{Binding Markets}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="市场名称" Binding="{Binding Name}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="自动运行状态" Binding="{Binding Auto}"></DataGridTextColumn>
+                <DataGridTextColumn Header="开始运行时间" Binding="{Binding StartTime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="结束运行时间" Binding="{Binding EndTime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="最后更新时间" Binding="{Binding Updated, StringFormat='yyyy-MM-dd hh:mm:ss'}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="操作">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="dataModel:Market">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Command="{StaticResource ManualRunCrawler}" CommandParameter="{Binding Id}">运行一次</Button>
+                                <Button Command="{StaticResource MarketEdit}" CommandParameter="{Binding Id}">编辑</Button>
+                                <!--<Button>自动抓取设置</Button>-->
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="产品" HorizontalAlignment="Left" Margin="5.585,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <DataGrid Name="newsList" HorizontalAlignment="Left" Margin="6,36,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Newses}" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="产品名" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="CRM ID" Binding="{Binding ProductId}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="+" HorizontalAlignment="Left" Margin="211,12,0,0" VerticalAlignment="Top" Width="20" Height="20" Padding="0,0,0,1" Click="AddMarket"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="45,13,0,0" VerticalAlignment="Top" Width="20" Height="20" Padding="0,0,0,1" Grid.Column="1" Click="AddNews"/>
+        <Button Content="开始自动运行" Name="runTimer" HorizontalAlignment="Left" Margin="248,12,0,0" VerticalAlignment="Top" Width="92" Click="RunTimerClick"/>
+
+    </Grid>
+</Window>

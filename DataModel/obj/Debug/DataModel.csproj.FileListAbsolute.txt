@@ -1,0 +1,9 @@
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\DataModel.dll.config
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\DataModel.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\DataModel.pdb
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\EntityFramework.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\EntityFramework.xml
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\obj\Debug\DataModel.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\obj\Debug\DataModel.pdb
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Debug\EntityFramework.SqlServer.xml

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutoNewsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AutoNewsModelStoreContainer">
+    <EntitySet Name="Crawler" EntityType="AutoNewsModel.Store.Crawler" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Holiday" EntityType="AutoNewsModel.Store.Holiday" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Log" EntityType="AutoNewsModel.Store.Log" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Market" EntityType="AutoNewsModel.Store.Market" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MarketType" EntityType="AutoNewsModel.Store.MarketType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="News" EntityType="AutoNewsModel.Store.News" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prices" EntityType="AutoNewsModel.Store.Prices" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Crawler_Market" Association="AutoNewsModel.Store.FK_Crawler_Market">
+      <End Role="Market" EntitySet="Market" />
+      <End Role="Crawler" EntitySet="Crawler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Log_Market" Association="AutoNewsModel.Store.FK_Log_Market">
+      <End Role="Market" EntitySet="Market" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Market_MarketType" Association="AutoNewsModel.Store.FK_Market_MarketType">
+      <End Role="MarketType" EntitySet="MarketType" />
+      <End Role="Market" EntitySet="Market" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Market" Association="AutoNewsModel.Store.FK_News_Market">
+      <End Role="Market" EntitySet="Market" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prices_News" Association="AutoNewsModel.Store.FK_Prices_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="Prices" EntitySet="Prices" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Crawler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartTime" Type="time" />
+    <Property Name="MarketName" Type="nvarchar(max)" />
+    <Property Name="MarketId" Type="int" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Holidate" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="LogTime" Type="datetime" />
+    <Property Name="MarketId" Type="int" />
+    <Property Name="Published" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Market">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MarketTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MarketCrmId" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="time" />
+    <Property Name="RunOnHoliday" Type="bit" Nullable="false" />
+    <Property Name="EndTime" Type="time" />
+    <Property Name="Auto" Type="bit" Nullable="false" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MarketType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="MarketId" Type="int" Nullable="false" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Prices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NewsId" Type="int" />
+    <Property Name="LPrice" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="HPirce" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Delta" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="Spread" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="PriceUnit" Type="nvarchar(max)" />
+    <Property Name="Token" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MarketCrmId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Crawler_Market">
+    <End Role="Market" Type="AutoNewsModel.Store.Market" Multiplicity="0..1" />
+    <End Role="Crawler" Type="AutoNewsModel.Store.Crawler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Market">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Crawler">
+        <PropertyRef Name="MarketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Log_Market">
+    <End Role="Market" Type="AutoNewsModel.Store.Market" Multiplicity="0..1" />
+    <End Role="Log" Type="AutoNewsModel.Store.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Market">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="MarketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Market_MarketType">
+    <End Role="MarketType" Type="AutoNewsModel.Store.MarketType" Multiplicity="1" />
+    <End Role="Market" Type="AutoNewsModel.Store.Market" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MarketType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Market">
+        <PropertyRef Name="MarketTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Market">
+    <End Role="Market" Type="AutoNewsModel.Store.Market" Multiplicity="1" />
+    <End Role="News" Type="AutoNewsModel.Store.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Market">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="MarketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prices_News">
+    <End Role="News" Type="AutoNewsModel.Store.News" Multiplicity="0..1" />
+    <End Role="Prices" Type="AutoNewsModel.Store.Prices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prices">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

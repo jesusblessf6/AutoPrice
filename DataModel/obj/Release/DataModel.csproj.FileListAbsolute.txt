@@ -1,0 +1,10 @@
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\DataModel.dll.config
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\DataModel.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\DataModel.pdb
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\EntityFramework.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\EntityFramework.SqlServer.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\EntityFramework.xml
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\bin\Release\EntityFramework.SqlServer.xml
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\obj\Release\DataModel.dll
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\obj\Release\DataModel.pdb
+F:\PerforceWorkspace\Jing.Li_wing-PC_6599\DEV\SourceCode\AutoPrice\DataModel\obj\Release\DataModel.csprojResolveAssemblyReference.cache
